@@ -1,0 +1,148 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shree Krishna Cycle Store</title>
+<link rel="icon" href="logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Mukta:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#13294f;--navy2:#1c3a6e;--teal:#0f9d94;--gold:#f0b429;--bg:#eef3f7;--card:#fff;--ink:#14213d;--mut:#667791;--red:#d64550;--ok:#1f9d55;color-scheme:light}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1830;--card:#152543;--ink:#e8eefb;--mut:#93a5c6;color-scheme:dark}}
+*{box-sizing:border-box;margin:0}body{font:16px/1.5 Mukta,sans-serif;background:var(--bg);color:var(--ink);display:flex;min-height:100vh}
+h1,h2,h3,.big{font-family:Sora,sans-serif}
+aside{width:240px;background:linear-gradient(180deg,var(--navy),#0b1a35);color:#fff;padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px}
+aside img{width:96px;height:96px;border-radius:50%;margin:0 auto 6px;border:3px solid var(--gold);display:block}
+aside h2{font-size:15px;text-align:center;margin-bottom:14px;line-height:1.3}
+nav button{all:unset;display:block;width:100%;padding:11px 14px;border-radius:10px;cursor:pointer;color:#c9d6f0;box-sizing:border-box}
+nav button:hover,nav button:focus-visible{background:#ffffff18}nav button.on{background:var(--teal);color:#fff;font-weight:600}
+main{flex:1;padding:24px;min-width:0}
+.hero{background:linear-gradient(120deg,var(--navy),var(--navy2) 60%,var(--teal));color:#fff;border-radius:22px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;overflow:hidden;position:relative;margin-bottom:20px}
+.hero h1{font-size:clamp(22px,3.4vw,36px);font-weight:800}.hero p{opacity:.85;max-width:440px}
+.wheel{width:190px;height:190px;flex:none;animation:spin 14s linear infinite;margin:-30px -20px -30px 0;opacity:.9}
+@keyframes spin{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.wheel{animation:none}}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin-bottom:20px}
+.card{background:var(--card);border-radius:16px;padding:18px;box-shadow:0 2px 12px #13294f14}
+.stat small{color:var(--mut)}.big{font-size:26px;font-weight:800;display:block}
+.stat.g{border-left:6px solid var(--teal)}.stat.y{border-left:6px solid var(--gold)}.stat.b{border-left:6px solid var(--navy2)}.stat.r{border-left:6px solid var(--red)}
+.two{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.alert{padding:10px 14px;border-radius:10px;margin:6px 0;font-size:15px}.alert.r{background:#d6455022;color:var(--red)}.alert.y{background:#f0b42926;color:#a87100}
+@media(prefers-color-scheme:dark){.alert.y{color:var(--gold)}}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+input,select,textarea{font:inherit;padding:9px 12px;border-radius:10px;border:1.5px solid #a9b8d055;background:var(--card);color:var(--ink);min-width:0}
+input:focus,select:focus,button:focus-visible{outline:3px solid var(--gold)}
+.btn{font:600 15px Sora,sans-serif;background:var(--teal);color:#fff;border:0;border-radius:10px;padding:10px 16px;cursor:pointer}
+.btn.gold{background:var(--gold);color:#1b1b1b}.btn.red{background:var(--red)}.btn.sm{padding:5px 10px;font-size:13px}.btn.ghost{background:#8aa0c433;color:var(--ink)}
+.chip{padding:6px 12px;border-radius:99px;background:#8aa0c433;cursor:pointer;border:0;color:var(--ink);font:inherit}.chip.on{background:var(--navy2);color:#fff}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:640px}th,td{padding:10px 8px;text-align:left;border-bottom:1px solid #8aa0c433;white-space:nowrap}
+th{color:var(--mut);font-weight:600;font-size:14px}.tag{padding:2px 9px;border-radius:99px;font-size:12px;background:#0f9d9426;color:var(--teal)}
+.low{color:var(--red);font-weight:700}.pos{color:var(--ok)}
+dialog{border:0;border-radius:18px;padding:24px;width:min(460px,94vw);background:var(--card);color:var(--ink)}dialog::backdrop{background:#0008}
+dialog form{display:grid;gap:10px}dialog label{font-size:14px;color:var(--mut);display:grid;gap:3px}
+.toast{position:fixed;bottom:18px;right:18px;background:var(--navy);color:#fff;padding:12px 18px;border-radius:12px;display:none;z-index:9}
+footer{margin-top:28px;text-align:center;color:var(--mut);font-size:14px;padding:14px;border-top:1px dashed #8aa0c455}
+#lg{position:fixed;inset:0;background:linear-gradient(120deg,var(--navy),var(--teal));display:none;place-items:center;z-index:20}#lg.on{display:grid}#lg form{display:grid;gap:12px;width:min(360px,92vw);padding:28px}#lg img{width:88px;border-radius:50%;margin:auto;border:3px solid var(--gold)}#lg h2{text-align:center}#lg label,dialog label{display:grid;gap:3px;font-size:14px;color:var(--mut)}
+section{display:none}section.on{display:block}
+@media(max-width:800px){body{flex-direction:column}aside{width:100%;height:auto;position:static;flex-direction:row;flex-wrap:wrap;align-items:center;padding:10px}aside img{width:48px;height:48px;margin:0}aside h2{display:none}nav{display:flex;flex-wrap:wrap;gap:4px}nav button{width:auto;padding:8px 10px}.wheel{display:none}}
+</style></head><body>
+<aside><img src="logo.jpg" alt="Shree Krishna Cycle Store logo"><h2>Shree Krishna<br>Cycle Store</h2>
+<nav id="nav"></nav><div id="ub" style="margin-top:auto;font-size:14px;display:grid;gap:6px"></div></aside>
+<main>
+<section id="dash" class="on">
+ <div class="hero"><div><h1>Namaste! Your shop at a glance</h1><p>Stock, profit and payments that need attention today.</p></div>
+ <svg class="wheel" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="1.2"><circle cx="50" cy="50" r="46" stroke-width="5" stroke="#f0b429"/><circle cx="50" cy="50" r="6"/><g id="spokes"></g></svg></div>
+ <div class="grid" id="stats"></div>
+ <div class="two"><div class="card"><h3>Reminders</h3><div id="alerts"></div></div><div class="card"><h3>Units in stock by type</h3><div id="chart"></div></div></div>
+</section>
+<section id="stock"><div class="bar"><input id="q" placeholder="Search cycle or part" oninput="renderStock()">
+ <select id="fc" onchange="renderStock()"></select><select id="fb" onchange="renderStock()"></select>
+ <button class="btn" onclick="editProduct()">+ Add item</button></div>
+ <div class="bar" id="sizes"></div><div class="card tw"><table id="stT"></table></div></section>
+<section id="brands"><div class="bar"><input id="bn" placeholder="New brand name"><button class="btn" onclick="addBrand()">Add brand</button></div><div class="card tw"><table id="brT"></table></div></section>
+<section id="sell"><div class="card"><h3 style="margin-bottom:10px">Sell an item</h3><form id="sf" class="bar" onsubmit="sell(event)"></form></div>
+ <div class="card tw" style="margin-top:14px"><h3>Recent sales</h3><table id="slT"></table></div></section>
+<section id="pay"><div class="bar"><button class="btn" onclick="payDlg.showModal()">+ Add payment</button><button class="chip on" id="tp" onclick="payTab='pending';renderPay()">Pending</button><button class="chip" id="th" onclick="payTab='paid';renderPay()">History</button></div>
+ <div class="card tw"><table id="pyT"></table></div></section>
+<footer>Developed by Arnav Regundwar 8308371944</footer>
+</main>
+<dialog id="prDlg"><form onsubmit="saveProduct(event)"><h3 id="prH">Add item</h3>
+<label>Name<input id="pn" required></label>
+<label>Type<select id="pc"><option>Electric cycle</option><option>Gear cycle</option><option>Non-gear cycle</option><option>Spare part</option></select></label>
+<label>Brand<select id="pb"></select></label><label>Size<select id="ps"></select></label>
+<label>Buying price ₹<input id="pbuy" type="number" min="0" required></label><label>Selling price ₹<input id="psell" type="number" min="0" required></label>
+<label>Stock quantity<input id="pst" type="number" min="0" required></label><label>Warn when stock is at or below<input id="pmin" type="number" min="0" value="2"></label>
+<div class="bar"><button class="btn">Save item</button><button type="button" class="btn ghost" onclick="prDlg.close()">Cancel</button></div></form></dialog>
+<dialog id="payDlg"><form onsubmit="savePay(event)"><h3>Add payment</h3>
+<label>Direction<select id="yk"><option value="pay">I have to pay (supplier)</option><option value="receive">I will receive (customer)</option></select></label>
+<label>Party name<input id="yp" required></label><label>Note<input id="yn"></label>
+<label>Amount ₹<input id="ya" type="number" min="1" required></label><label>Due date<input id="yd" type="date" required></label>
+<div class="bar"><button class="btn">Save payment</button><button type="button" class="btn ghost" onclick="payDlg.close()">Cancel</button></div></form></dialog>
+<div id="lg"><form class="card" onsubmit="login(event)"><img src="logo.jpg" alt="Shree Krishna Cycle Store logo"><h2>Shree Krishna Cycle Store</h2>
+<label>User<select id="lu"><option>admin</option><option>girish</option><option>arnav</option><option>vinod</option></select></label>
+<label>Password<input id="lp" type="password" required autocomplete="current-password"></label><div id="le" class="low"></div><button class="btn">Log in</button></form></div>
+<dialog id="pwDlg"><form id="pwF" onsubmit="changePw(event)"><h3>Change password</h3>
+<label>Current password<input id="pold" type="password" required></label><label>New password (6+ characters)<input id="pnew" type="password" minlength="6" required></label>
+<label>Repeat new password<input id="pnew2" type="password" minlength="6" required></label>
+<div class="bar"><button class="btn">Save password</button><button type="button" class="btn ghost" onclick="pwDlg.close()">Cancel</button></div></form></dialog>
+<div class="toast" id="toast"></div>
+<script>
+const SIZES=["14T","16T","20T","24T","26T","27.5T","29T","N/A"],CATS=["Electric cycle","Gear cycle","Non-gear cycle","Spare part"];
+const $=i=>document.getElementById(i),inr=n=>"₹"+Math.round(n||0).toLocaleString("en-IN"),today=()=>new Date().toISOString().slice(0,10);
+let D={brands:[],products:[],sales:[],payments:[]},sizeF="All",payTab="pending",editId=null;
+const bn=id=>(D.brands.find(b=>b.id==id)||{}).name||"-",pn=id=>(D.products.find(p=>p.id==id)||{}).name||"(deleted)";
+function toast(m){const t=$("toast");t.textContent=m;t.style.display="block";setTimeout(()=>t.style.display="none",2600)}
+async function api(m,u,b){const r=await fetch(u,{method:m,headers:{"Content-Type":"application/json"},body:b?JSON.stringify(b):undefined});if(r.status==401){showLogin();throw 0}const j=await r.json();if(j.error){toast(j.error);throw 0}return j}
+let ME={};
+async function load(){const m=await fetch("/api/me");if(m.status==401)return showLogin();ME=await m.json();
+ $("ub").innerHTML=`<div>Logged in: <b>${ME.user}</b> (Owner)</div><div><button class="btn sm ghost" onclick="pwDlg.showModal()">Change password</button> <button class="btn sm gold" onclick="logout()">Log out</button></div>`;
+ D=await (await fetch("/api/all")).json();render()}
+function showLogin(){$("lg").classList.add("on");$("lp").value="";$("lp").focus()}
+async function login(e){e.preventDefault();const r=await fetch("/api/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:$("lu").value,password:$("lp").value})});
+ if(r.ok){$("lg").classList.remove("on");$("le").textContent="";load()}else{$("le").textContent="Wrong username or password";$("lp").select()}}
+async function logout(){await fetch("/api/logout",{method:"POST",body:"{}"});location.reload()}
+async function changePw(e){e.preventDefault();if($("pnew").value!=$("pnew2").value){toast("New passwords do not match");return}
+ await api("POST","/api/password",{old:$("pold").value,new:$("pnew").value});pwDlg.close();$("pwF").reset();toast("Password changed");load()}
+function show(id){document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id==id));document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.t==id))}
+[["dash","Dashboard"],["stock","Stock"],["sell","Sell"],["pay","Payments"],["brands","Brands"]].forEach(([i,t])=>{const b=document.createElement("button");b.textContent=t;b.dataset.t=i;b.onclick=()=>show(i);$("nav").append(b)});show("dash");
+$("spokes").innerHTML=[...Array(12)].map((_,i)=>`<line x1="50" y1="50" x2="${50+44*Math.cos(i*Math.PI/6)}" y2="${50+44*Math.sin(i*Math.PI/6)}"/>`).join("");
+const opts=(a,all)=>(all?`<option>${all}</option>`:"")+a.map(x=>`<option>${x}</option>`).join("");
+function render(){
+ $("fc").innerHTML=opts(CATS,"All types");$("fb").innerHTML=`<option value="">All brands</option>`+D.brands.map(b=>`<option value="${b.id}">${b.name}</option>`).join("");
+ $("pb").innerHTML=D.brands.map(b=>`<option value="${b.id}">${b.name}</option>`).join("");$("ps").innerHTML=opts(SIZES);
+ $("sizes").innerHTML=["All",...SIZES].map(s=>`<button class="chip ${s==sizeF?"on":""}" onclick="sizeF='${s}';renderStock();render2()">${s}</button>`).join("");
+ renderStock();dash();brandsT();sellUI();renderPay()}
+function render2(){$("sizes").innerHTML=["All",...SIZES].map(s=>`<button class="chip ${s==sizeF?"on":""}" onclick="sizeF='${s}';renderStock();render2()">${s}</button>`).join("")}
+function dash(){
+ const P=D.products,val=P.reduce((a,p)=>a+p.buy*p.stock,0),ret=P.reduce((a,p)=>a+p.sell*p.stock,0),m=today().slice(0,7);
+ const ms=D.sales.filter(s=>s.date.startsWith(m)),rev=ms.reduce((a,s)=>a+s.price*s.qty,0),prof=ms.reduce((a,s)=>{const p=D.products.find(x=>x.id==s.product_id);return a+(s.price-(p?p.buy:0))*s.qty},0);
+ const due=D.payments.filter(p=>p.status=="pending"&&p.kind=="pay").reduce((a,p)=>a+p.amount,0);
+ $("stats").innerHTML=[["g","Items in stock",P.reduce((a,p)=>a+p.stock,0)],["b","Stock value (buying)",inr(val)],["y","Expected sale value",inr(ret)],["g","This month's sales",inr(rev)],["y","This month's profit",inr(prof)],["r","To pay suppliers",inr(due)]].map(([c,l,v])=>`<div class="card stat ${c}"><small>${l}</small><span class="big">${v}</span></div>`).join("");
+ let a=ME.default_pw?`<div class="alert r">You are using the default password. Click Change password on the left.</div>`:"";const t=new Date(today());
+ D.payments.filter(p=>p.status=="pending").sort((x,y)=>x.due>y.due?1:-1).forEach(p=>{const d=Math.round((new Date(p.due)-t)/864e5);if(d<=3)a+=`<div class="alert ${d<0?"r":"y"}">${p.kind=="pay"?"Pay":"Collect from"} ${p.party}: ${inr(p.amount)} ${d<0?`overdue by ${-d} day(s)`:d==0?"due today":`due in ${d} day(s)`}</div>`});
+ P.filter(p=>p.stock<=p.min_stock).forEach(p=>a+=`<div class="alert r">Low stock: ${p.name} (${p.size}) - ${p.stock} left</div>`);
+ $("alerts").innerHTML=a||"<p style='color:var(--mut)'>All clear. No payments due soon and no low stock.</p>";
+ const mx=Math.max(1,...CATS.map(c=>P.filter(p=>p.category==c).reduce((a,p)=>a+p.stock,0))),cl=["#0f9d94","#f0b429","#1c3a6e","#d64550"];
+ $("chart").innerHTML=`<svg viewBox="0 0 320 170" width="100%" role="img" aria-label="Units in stock by type">`+CATS.map((c,i)=>{const n=P.filter(p=>p.category==c).reduce((a,p)=>a+p.stock,0),h=n/mx*110;return `<rect x="${20+i*76}" y="${130-h}" width="56" height="${h}" rx="8" fill="${cl[i]}"/><text x="${48+i*76}" y="${123-h}" text-anchor="middle" font-size="13" fill="currentColor">${n}</text><text x="${48+i*76}" y="152" text-anchor="middle" font-size="10.5" fill="currentColor">${c.replace(" cycle","")}</text>`}).join("")+`</svg>`}
+function renderStock(){
+ const q=$("q").value.toLowerCase(),c=$("fc").value,b=$("fb").value;
+ const L=D.products.filter(p=>(!q||(p.name+bn(p.brand_id)).toLowerCase().includes(q))&&(c=="All types"||!c||p.category==c)&&(!b||p.brand_id==b)&&(sizeF=="All"||p.size==sizeF));
+ $("stT").innerHTML=`<tr><th>Item</th><th>Type</th><th>Brand</th><th>Size</th><th>Buy</th><th>Sell</th><th>Margin</th><th>Stock</th><th></th></tr>`+L.map(p=>`<tr><td><b>${p.name}</b></td><td><span class="tag">${p.category}</span></td><td>${bn(p.brand_id)}</td><td>${p.size}</td><td>${inr(p.buy)}</td><td>${inr(p.sell)}</td><td class="pos">${inr(p.sell-p.buy)}</td>
+ <td class="${p.stock<=p.min_stock?"low":""}"><button class="btn sm ghost" onclick="adj(${p.id},-1)">-</button> ${p.stock} <button class="btn sm ghost" onclick="adj(${p.id},1)">+</button></td>
+ <td><button class="btn sm gold" onclick="editProduct(${p.id})">Edit</button> <button class="btn sm red" onclick="del('products',${p.id},'${p.name.replace(/'/g,"")}')">Delete</button></td></tr>`).join("")||`<tr><td colspan=9 style="color:var(--mut)">No items yet. Click "+ Add item" to add your first cycle or part.</td></tr>`}
+async function adj(id,d){const p=D.products.find(x=>x.id==id);if(p.stock+d<0)return;await api("PUT","/api/products/"+id,{stock:p.stock+d});load()}
+async function del(t,id,n){if(confirm("Delete "+n+"?")){await api("DELETE",`/api/${t}/${id}`);load()}}
+function editProduct(id){editId=id||null;const p=D.products.find(x=>x.id==id)||{name:"",category:CATS[0],brand_id:(D.brands[0]||{}).id,size:"26T",buy:"",sell:"",stock:"",min_stock:2};
+ $("prH").textContent=id?"Edit item":"Add item";[["pn","name"],["pc","category"],["pb","brand_id"],["ps","size"],["pbuy","buy"],["psell","sell"],["pst","stock"],["pmin","min_stock"]].forEach(([i,k])=>$(i).value=p[k]);prDlg.showModal()}
+async function saveProduct(e){e.preventDefault();const b={name:$("pn").value,category:$("pc").value,brand_id:+$("pb").value,size:$("ps").value,buy:+$("pbuy").value,sell:+$("psell").value,stock:+$("pst").value,min_stock:+$("pmin").value};
+ await api(editId?"PUT":"POST","/api/products"+(editId?"/"+editId:""),b);prDlg.close();toast("Item saved");load()}
+function brandsT(){$("brT").innerHTML=`<tr><th>Brand</th><th>Items</th><th></th></tr>`+D.brands.map(b=>`<tr><td><b>${b.name}</b></td><td>${D.products.filter(p=>p.brand_id==b.id).length}</td><td><button class="btn sm red" onclick="del('brands',${b.id},'${b.name}')">Delete</button></td></tr>`).join("")}
+async function addBrand(){const n=$("bn").value.trim();if(!n)return;await api("POST","/api/brands",{name:n});$("bn").value="";toast("Brand added");load()}
+function sellUI(){$("sf").innerHTML=`<select id="sp" onchange="$('spr').value=D.products.find(p=>p.id==this.value).sell">${D.products.filter(p=>p.stock>0).map(p=>`<option value="${p.id}">${p.name} ${p.size} (${p.stock} left)</option>`).join("")}</select>
+ <input id="sq" type="number" min="1" value="1" style="width:80px" aria-label="Quantity"><input id="spr" type="number" min="0" placeholder="Price ₹" style="width:120px" required><input id="sc" placeholder="Customer name"><button class="btn gold">Record sale</button>`;
+ if($("sp").value)$("spr").value=D.products.find(p=>p.id==$("sp").value).sell;
+ $("slT").innerHTML=`<tr><th>Date</th><th>Item</th><th>Qty</th><th>Price</th><th>Customer</th></tr>`+D.sales.slice(0,15).map(s=>`<tr><td>${s.date}</td><td>${pn(s.product_id)}</td><td>${s.qty}</td><td>${inr(s.price)}</td><td>${s.customer||"-"}</td></tr>`).join("")}
+async function sell(e){e.preventDefault();if(!$("sp").value)return;await api("POST","/api/sell",{product_id:+$("sp").value,qty:+$("sq").value,price:+$("spr").value,customer:$("sc").value,date:today()});toast("Sale recorded");load()}
+function renderPay(){$("tp").classList.toggle("on",payTab=="pending");$("th").classList.toggle("on",payTab=="paid");const t=new Date(today());
+ $("pyT").innerHTML=`<tr><th>Party</th><th>Type</th><th>Note</th><th>Amount</th><th>Due</th><th>${payTab=="paid"?"Paid on":"Status"}</th><th></th></tr>`+D.payments.filter(p=>p.status==payTab).sort((a,b)=>a.due>b.due?1:-1).map(p=>{const d=Math.round((new Date(p.due)-t)/864e5);
+ return `<tr><td><b>${p.party}</b></td><td>${p.kind=="pay"?"To pay":"To receive"}</td><td>${p.note||"-"}</td><td>${inr(p.amount)}</td><td>${p.due}</td><td>${payTab=="paid"?p.paid_on:`<span class="${d<0?"low":""}">${d<0?"Overdue":d==0?"Due today":d+" days left"}</span>`}</td>
+ <td>${payTab=="pending"?`<button class="btn sm" onclick="markPaid(${p.id})">Mark done</button> `:""}<button class="btn sm red" onclick="del('payments',${p.id},'this entry')">Delete</button></td></tr>`}).join("")||`<tr><td colspan=7 style="color:var(--mut)">${payTab=="paid"?"No completed payments yet.":"No pending payments. Click + Add payment to set a reminder."}</td></tr>`}
+async function savePay(e){e.preventDefault();await api("POST","/api/payments",{kind:$("yk").value,party:$("yp").value,note:$("yn").value,amount:+$("ya").value,due:$("yd").value,status:"pending"});payDlg.close();toast("Payment saved");load()}
+async function markPaid(id){await api("POST",`/api/payments/${id}/paid`,{date:today()});toast("Moved to history");load()}
+load();
+</script></body></html>
